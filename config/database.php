@@ -35,7 +35,7 @@ class Database
             exit;
         } else {
             // no errors => return connection
-            echo "connected to database successfully \n";
+            // echo "connected to database successfully \n";
             return $this->conn;
         }
 

@@ -36,6 +36,13 @@ class Student
         $obj->bind_param('sss',$this->name,$this->email,$this->phone_number);
         return $obj->execute();
     }
+
+    public function read_all_data(){
+        $query = "SELECT * FROM ". $this->table_name;
+        $obj =  $this->conn->prepare($query);
+        $obj->execute();
+        return $obj->get_result();
+    }
 }
 
 
