@@ -1,6 +1,7 @@
 <?php
 class Student
 {
+
     public $name;
     public $email;
     public $phone_number;
@@ -10,7 +11,7 @@ class Student
     private $table_name;
 
     //  constructor
-    public function __construct($db)
+    public function __construct( $db)
     {
         $this->conn = $db;
         $this->table_name = "students";
@@ -22,7 +23,7 @@ class Student
         // sql query to insert data
 
         $query = "INSERT INTO " . $this->table_name .
-            "SET name = ?, email = ?,phone_number = ?";
+            "( name, email,phone_number) values( ?,  ?, ?)";
         $obj = $this->conn->prepare($query);
 
         // removing special characters 

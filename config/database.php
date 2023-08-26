@@ -31,11 +31,11 @@ class Database
 
         if ($this->conn->connect_errno) {
             // has errors
-            print_r($this->conn->connect_error);
+            print_r($this->conn->connect_error.'\n');
             exit;
         } else {
             // no errors => return connection
-            echo "connected to database successfully";
+            echo "connected to database successfully \n";
             return $this->conn;
         }
 
