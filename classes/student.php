@@ -52,7 +52,14 @@ class Student
         $data = $obj->get_result();
         return $data->fetch_assoc();
     }
-    
+    function remove_student($id){
+        $query = "delete from ".$this->table_name." where id = ? ";
+        $obj = $this->conn->prepare($query);
+        $obj->bind_param("i",$id);
+        $obj->execute();
+        $affectedRows  = $obj->affected_rows;
+        return $affectedRows > 0;
+    }
 
 
 }
