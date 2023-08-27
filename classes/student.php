@@ -43,6 +43,14 @@ class Student
         $obj->execute();
         return $obj->get_result();
     }
+    public function read_data($id){
+        $query ='SELECT * FROM '.$this->table_name." WHERE id = ?";
+        $obj = $this->conn->prepare($query);
+        $obj->bind_param('i',$id);
+        $obj->execute();
+        $data = $obj->get_result();
+        return $data->fetch_assoc();
+    }
 }
 
 
