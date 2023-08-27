@@ -7,14 +7,15 @@ class Student
     public $phone_number;
 
 
-    private mysqli $conn  ;
-    private $table_name;
+    protected mysqli $conn ;
+    protected $table_name;
 
     //  constructor
     public function __construct( $db)
     {
         $this->conn = $db;
         $this->table_name = "students";
+
     }
     public  function  create_data() 
     {
@@ -50,6 +51,25 @@ class Student
         $obj->execute();
         $data = $obj->get_result();
         return $data->fetch_assoc();
+    }
+    
+
+
+}
+
+class StudentUpdate extends Student{
+    public $status;
+    public $created_at;
+    public $id;
+    function __construct($db){
+        parent::__construct($db);
+    }
+    public function update_data()
+    {
+        $query = "UPDATE " . $this->table_name . " SET name = ? , email = ? ,phone_number = ? , status = ? , created_at = ? WHERE id = ?";
+        $obj = $this->conn->prepare($query);
+        $obj->bind_param('sssssi',$this->name,$this->email,$this->phone_number,$this->status,$this->created_at,$this->id);
+        return $obj->execute();
     }
 }
 
